@@ -1,0 +1,12 @@
+- hosts: demo
+  user: ansible
+  become: yes
+  connection: ssh
+  tasks:
+        - name: install tomcat
+          action: yum name=tomcat state=installed
+          notify: restart tomcat
+  handlers:
+              - name: restart tomcat
+                action: service name=tomcat state=restarted
+
